@@ -15,4 +15,11 @@ router.get('/helloworld', function(req, res) {
 router.get('/moment', function(req, res) {
     res.render('moment', { title: 'Date and Time' });
 });
+
+/* GET FullCalendar page. */
+router.get('/calendar', function(req, res) {
+    res.render('calendar', { title: 'Calendar' });
+});
+
+
 module.exports = router;
