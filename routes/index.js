@@ -21,5 +21,9 @@ router.get('/calendar', function(req, res) {
     res.render('calendar', { title: 'Calendar' });
 });
 
+/* GET Angular page. */
+router.get('/angular', function(req, res) {
+    res.render('angular', { title: 'Angular' });
+});
 
 module.exports = router;

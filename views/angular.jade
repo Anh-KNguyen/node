@@ -1,0 +1,10 @@
+doctype html
+html(lang='en-US')
+  head
+    script(src='/javascripts/angular.min.js')
+  body
+    div(ng-app='')
+      p
+        | Name :
+        input(type='text', ng-model='name')
+      h1 Hello {{name}}
