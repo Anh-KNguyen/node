@@ -26,4 +26,10 @@ router.get('/angular', function(req, res) {
     res.render('angular', { title: 'Angular' });
 });
 
+/* GET jQuery page. */
+router.get('/jquery', function(req, res) {
+    res.render('jquery', { title: 'jquery' });
+});
+
+
 module.exports = router;

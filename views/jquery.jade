@@ -1,0 +1,17 @@
+doctype html
+html
+  head
+    script(src='/javascripts/jquery.min.js')
+    script.
+      $(document).ready(function(){
+      $("#hide").click(function(){
+      $("p").hide();
+      });
+      $("#show").click(function(){
+      $("p").show();
+      });
+      });
+  body
+    p If you click on the "Hide" button, I will disappear.
+    button#hide Hide
+    button#show Show
