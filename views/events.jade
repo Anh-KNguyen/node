@@ -1,0 +1,9 @@
+extends layout
+
+block content
+  h1.
+    Event List
+  ul
+    each event, i in Events
+      li
+        p #{event.title} #{event.start}

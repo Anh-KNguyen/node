@@ -31,5 +31,15 @@ router.get('/jquery', function(req, res) {
     res.render('jquery', { title: 'jquery' });
 });
 
+/* GET Userlist page. */
+router.get('/events', function(req, res) {
+    var db = req.db;
+    var collection = db.get('eventcollection');
+    collection.find({},{},function(e,docs){
+        res.render('Events', {
+            "Events" : docs
+        });
+    });
+});
 
 module.exports = router;

@@ -11,6 +11,12 @@ var app = express();
 // Added moment.js here
 app.locals.moment = require('moment');
 
+// Added mongoDB stuff here
+var mongo = require('mongodb');
+var monk = require('monk');
+var db = monk('localhost:27017/node');
+
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
@@ -20,6 +26,12 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+// Make our db accessible to our router
+app.use(function(req,res,next){
+    req.db = db;
+    next();
+});
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
