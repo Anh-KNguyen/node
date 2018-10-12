@@ -10,7 +10,7 @@ html
       document.addEventListener('DOMContentLoaded', function() {
       var calendarEl = document.getElementById('calendar');
       var calendar = new FullCalendar.Calendar(calendarEl, {
-      defaultDate: '2018-04-12',
+      defaultDate: moment().format('YYYY-MM-DD'),
       editable: true,
       eventLimit: true, // allow "more" link when too many events
       events: [
@@ -90,3 +90,9 @@ html
     p Welcome to #{title}
 
     #calendar
+    form#formAddEvent(name="addevent",method="post",action="/addevent")
+        input#inputEventTitle(type="text", placeholder="event title", name="eventtitle")
+        input#inputEventStart(type="text", placeholder="start YYYY-MM-DD", name="eventstart")
+        input#inputEventEnd(type="text", placeholder="end YYYY-MM-DD (optional)", name="eventend")
+        input#inputEventURL(type="text", placeholder="event url (optional)", name="eventurl")
+        button#btnSubmit(type="submit") submit

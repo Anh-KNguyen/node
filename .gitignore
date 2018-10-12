@@ -64,6 +64,8 @@ dll/
 .idea/
 *.swp
 
+# MongoDB #
+/data/*
 
 # Angular #
 *.ngfactory.ts
