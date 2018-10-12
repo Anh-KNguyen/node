@@ -36,8 +36,8 @@ router.get('/events', function(req, res) {
     var db = req.db;
     var collection = db.get('eventcollection');
     collection.find({},{},function(e,docs){
-        res.render('Events', {
-            "Events" : docs
+        res.render('events', {
+            "events" : docs
         });
     });
 });
