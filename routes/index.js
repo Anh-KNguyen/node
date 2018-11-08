@@ -12,7 +12,7 @@ router.get('/helloworld', function(req, res) {
 });
 
 /* GET Moment page. */
-router.get('/moment', function(req, res) {
+router.get('/moment', ensureAuthenticated, function(req, res) {
     res.render('moment', { title: 'Date and Time' });
 });
 
@@ -82,6 +82,15 @@ router.post('/addevent', function(req, res) {
 //url: `https://calendar.cpp.edu/mastercalendar/mastercalendar.aspx`,
 
 
+
+function ensureAuthenticated(req, res, next){
+	if(req.isAuthenticated()){
+		return next();
+	} else {
+		//req.flash('error_msg','You are not logged in');
+		res.redirect('/users/login');
+	}
+}
 
 
 module.exports = router;

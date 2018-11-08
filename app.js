@@ -2,6 +2,11 @@ var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
+var expressValidator = require('express-validator');
+var flash = require('connect-flash')
+var session = require('express-session');
+var passport = require('passport');
+var LocalStrategy = require('passport-local').Strategy;
 var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
@@ -14,8 +19,10 @@ app.locals.moment = require('moment');
 // Added mongoDB stuff here
 var mongo = require('mongodb');
 var monk = require('monk');
-var db = monk('localhost:27017/node');
-
+var mongoose = require('mongoose');
+mongoose.connect('mongodb://localhost:27017/node'); // Replacing monk with mongoose.
+// var db = monk('localhost:27017/node');
+var db = mongoose.connection;
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -28,9 +35,50 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Make our db accessible to our router
-app.use(function(req,res,next){
-    req.db = db;
-    next();
+//app.use(function(req,res,next){
+//    req.db = db;
+//    next();
+//});
+
+// Express Session
+app.use(session({
+    secret: 'secret',
+    saveUninitialized: true,
+    resave: true
+}));
+
+// Passport init
+app.use(passport.initialize());
+app.use(passport.session());
+
+// Express Validator
+app.use(expressValidator({
+  errorFormatter: function(param, msg, value) {
+      var namespace = param.split('.')
+      , root    = namespace.shift()
+      , formParam = root;
+
+    while(namespace.length) {
+      formParam += '[' + namespace.shift() + ']';
+    }
+    return {
+      param : formParam,
+      msg   : msg,
+      value : value
+    };
+  }
+}));
+
+// Connect Flash
+app.use(flash());
+
+// Global Vars
+app.use(function (req, res, next) {
+  res.locals.success_msg = req.flash('success_msg');
+  res.locals.error_msg = req.flash('error_msg');
+  res.locals.error = req.flash('error');
+  res.locals.user = req.user || null;
+  next();
 });
 
 app.use('/', indexRouter);
