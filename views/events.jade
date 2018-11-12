@@ -1,9 +1,7 @@
-extends layout
-
 block content
-  h1.
-    Event List
+  .page-header
+    h3 All Events
+
   ul
-    each event, i in events
-      li
-        p #{event.title} #{event.start}
+    for event in events
+      li= event.title

@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+var Event = require('../models/event');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -33,20 +34,13 @@ router.get('/jquery', function(req, res) {
 
 /* GET Userlist page. */
 router.get('/events', function(req, res) {
-    var db = req.db;
-    var collection = db.get('eventcollection');
-    collection.find({},{},function(e,docs){
-        res.render('events', {
-            "events" : docs
-        });
-    });
+  Event.find((err, docs) => {
+    res.render('events', { events: docs });
+  });
 });
 
 /* POST to Add User Service */
 router.post('/addevent', function(req, res) {
-
-    // Set our internal DB variable
-    var db = req.db;
 
     // Get our form values. These rely on the "name" attributes
     var eventTitle = req.body.eventtitle;
@@ -54,26 +48,20 @@ router.post('/addevent', function(req, res) {
 	var eventEnd = req.body.eventend;
     var eventURL = req.body.eventurl;
 
-
-    // Set our collection
-    var collection = db.get('eventcollection');
-
     // Submit to the DB
-    collection.insert({
-        "title" : eventTitle,
-        "start" : eventStart,
-        "end" : eventEnd,
-        "url" : eventURL
-    }, function (err, doc) {
-        if (err) {
-            // If it failed, return error
-            res.send("There was a problem adding the information to the database.");
-        }
-        else {
-            // And forward to success page
-            res.redirect("/events");
-        }
+    var newEvent = new Event({
+	   title : eventTitle,
+	   description : " ",
+	   url : eventURL,
+	   eventStart : eventStart,
+	   eventEnd : eventEnd
     });
+	newEvent.save(function(err) {
+	  if (err) throw err;
+
+	  console.log('Event created!');
+	});
+	res.redirect('events');
 });
 
 
