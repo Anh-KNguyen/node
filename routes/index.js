@@ -32,14 +32,16 @@ router.get('/jquery', function(req, res) {
     res.render('jquery', { title: 'jquery' });
 });
 
-/* GET Userlist page. */
+/* GET Events page. */
 router.get('/events', function(req, res) {
   Event.find((err, docs) => {
     res.render('events', { events: docs });
   });
 });
 
-/* POST to Add User Service */
+var Event = require('../models/event');
+
+/* POST to Add Event Service */
 router.post('/addevent', function(req, res) {
 
     // Get our form values. These rely on the "name" attributes
@@ -56,9 +58,10 @@ router.post('/addevent', function(req, res) {
 	   eventStart : eventStart,
 	   eventEnd : eventEnd
     });
-	newEvent.save(function(err) {
+//	newEvent.save(function(err) {
+    Event.createEvent(newEvent, function (err, event) {
 	  if (err) throw err;
-
+      console.log(event);
 	  console.log('Event created!');
 	});
 	res.redirect('events');

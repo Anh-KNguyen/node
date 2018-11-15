@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 
-// User Schema
+// Event Schema
 var EventSchema = mongoose.Schema({
 	title: String,
 	description: String,
@@ -11,3 +11,7 @@ var EventSchema = mongoose.Schema({
 
 var Event = module.exports = mongoose.model('Event', EventSchema);
 module.exports = Event;
+
+module.exports.createEvent = function(newEvent, callback){
+    newEvent.save(callback);
+}

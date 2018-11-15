@@ -90,9 +90,19 @@ html
     p Welcome to #{title}
 
     #calendar
-    form#formAddEvent(name="addevent",method="post",action="/addevent")
-        input#inputEventTitle(type="text", placeholder="event title", name="eventtitle")
-        input#inputEventStart(type="text", placeholder="start YYYY-MM-DD", name="eventstart")
-        input#inputEventEnd(type="text", placeholder="end YYYY-MM-DD (optional)", name="eventend")
-        input#inputEventURL(type="text", placeholder="event url (optional)", name="eventurl")
-        button#btnSubmit(type="submit") submit
+
+    form(method='post', action='/addevent')
+      .form-group
+        label Event Title
+        input.form-control(type='text', name='eventtitle', placeholder='Event Title')
+      .form-group
+        label Event Start
+        input.form-control(type='text', name='eventstart', placeholder='Event Start YYYY-MM-DD')
+      .form-group
+        label Event End
+        input.form-control(type='text', name='eventend', placeholder='Event End YYYY-MM-DD (optional)')
+      .form-group
+        label Event URL
+        input.form-control(type='text', name='eventurl', placeholder='Event URL (optional)')
+      button.btn.btn-default(type='submit') Submit
+
