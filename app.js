@@ -20,7 +20,7 @@ app.locals.moment = require('moment');
 var mongo = require('mongodb');
 var monk = require('monk');
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost:27017/node'); // Replacing monk with mongoose.
+mongoose.connect('mongodb://localhost:27017/node',{ useNewUrlParser: true }); // Replacing monk with mongoose.
 // var db = monk('localhost:27017/node');
 var db = mongoose.connection;
 

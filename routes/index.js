@@ -19,7 +19,14 @@ router.get('/moment', ensureAuthenticated, function(req, res) {
 
 /* GET FullCalendar page. */
 router.get('/calendar', function(req, res) {
-    res.render('calendar', { title: 'Calendar' });
+  Event.find((err, docs) => {
+	docs = docs.map(doc => ({
+	  title: doc.title,
+	  start: doc.eventStart,
+	  end: doc.eventEnd,
+	}));
+    res.render('calendar', { events: docs });
+  });
 });
 
 /* GET Angular page. */
