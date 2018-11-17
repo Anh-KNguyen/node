@@ -24,6 +24,7 @@ router.get('/calendar', function(req, res) {
 	  title: doc.title,
 	  start: doc.eventStart,
 	  end: doc.eventEnd,
+	  description: doc.description,
 	}));
     res.render('calendar', { events: docs });
   });
@@ -56,11 +57,12 @@ router.post('/addevent', function(req, res) {
     var eventStart = req.body.eventstart;
 	var eventEnd = req.body.eventend;
     var eventURL = req.body.eventurl;
+    var eventDescription = req.body.eventdescription;
 
     // Submit to the DB
     var newEvent = new Event({
 	   title : eventTitle,
-	   description : " ",
+	   description : eventDescription,
 	   url : eventURL,
 	   eventStart : eventStart,
 	   eventEnd : eventEnd
@@ -68,7 +70,6 @@ router.post('/addevent', function(req, res) {
 //	newEvent.save(function(err) {
     Event.createEvent(newEvent, function (err, event) {
 	  if (err) throw err;
-      console.log(event);
 	  console.log('Event created!');
 	});
 	res.redirect('events');
