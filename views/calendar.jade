@@ -142,19 +142,5 @@ html
     #calendar
     ul
       for event in events
-        li= event.title
-    form(method='post', action='/addevent')
-      .form-group
-        label Event Title
-        input.form-control(type='text', name='eventtitle', placeholder='Event Title')
-      .form-group
-        label Event Start
-        input.form-control(type='text', name='eventstart', placeholder='Event Start YYYY-MM-DD')
-      .form-group
-        label Event End
-        input.form-control(type='text', name='eventend', placeholder='Event End YYYY-MM-DD (optional)')
-      .form-group
-        label Event Description
-        input.form-control(type='text', name='eventdescription', placeholder='Description')
-      button.btn.btn-default(type='submit') Submit
+        li= event.title + ': ' + event.start + ' - ' + event.end
 

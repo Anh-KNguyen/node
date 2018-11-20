@@ -47,6 +47,11 @@ router.get('/events', function(req, res) {
   });
 });
 
+/* GET Post Event page. */
+router.get('/post', function(req, res) {
+    res.render('post', { title: 'Post Event' });
+});
+
 var Event = require('../models/event');
 
 /* POST to Add Event Service */
