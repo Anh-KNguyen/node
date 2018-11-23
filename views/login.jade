@@ -1,9 +1,13 @@
-h2.page-header Account Login
-form(method='post', action='/users/login')
-  .form-group
-    label Username
+extends ./layout.jade
+block breadcrumbs
+ 
+block content
+ h2.page-header Account Login
+ form(method='post', action='/users/login')
+  .form-group.uk-padding-small
+    label.uk-padding-small Username
     input.form-control(type='text', name='username', placeholder='Username')
-  .form-group
-    label Password
+  .form-group.uk-padding-small
+    label.uk-padding-small Password
     input.form-control(type='password', name='password', placeholder='Password')
   button.btn.btn-default(type='submit') Submit

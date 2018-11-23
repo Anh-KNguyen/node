@@ -1,8 +1,11 @@
+extends ./layout.jade
+append crumbs
+	+crumb("events","events")
 block content
-  .page-header
-    h3 All Events
-  script.
-    console.log(events);
-  ul
-    for event in events
-      li= event.title
+	.page-header
+		h3 All Events
+	script.
+		console.log(events);
+	ul
+		for event in events
+			li= event.title

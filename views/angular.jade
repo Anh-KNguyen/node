@@ -1,10 +1,11 @@
-doctype html
-html(lang='en-US')
-  head
-    script(src='/javascripts/angular.min.js')
-  body
-    div(ng-app='')
-      p
-        | Name :
-        input(type='text', ng-model='name')
-      h1 Hello {{name}}
+extends ./layout.jade
+append header
+	script(src='/javascripts/angular.min.js')
+	
+append crumbs
+	+crumb("angular","Angular")
+block content
+	div(ng-app='')
+		p| Name :
+		input(type='text', ng-model='name')
+		h1 Hello {{name}}

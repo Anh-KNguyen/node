@@ -1,7 +1,20 @@
 doctype html
 html
-  head
-    title= title
-    link(rel='stylesheet', href='/stylesheets/style.css')
-  body
-    block content
+	head
+	block header
+	title= title
+	link(rel='stylesheet', href='/stylesheets/style.css')
+	link(rel='stylesheet', href='/uikit/css/uikit.min.css')
+	link(rel='javascript', href='/uikit/js/uikit.min.js')
+	link(rel='javascript', href='/uikit/js/uikit-icons.min.js')
+	link(rel='stylesheet', href='/stylesheets/style.css')
+	link(rel='stylesheet', href='/uikit/css/uikit.min.css')
+	script(src='/uikit/js/uikit.min.js')
+	script(src='/uikit/js/uikit-icons.min.js')
+body
+	include ./navbar.jade
+	div( uk-height-viewport="offset-bottom: 0" class="uk-padding-small uk-background-primary uk-padding-remove-top")
+		div(class="uk-margin uk-padding-small uk-background-default")
+			block breadcrumbs
+				include ./breadcrumb.jade
+			block content

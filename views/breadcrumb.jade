@@ -1,0 +1,8 @@
+block crumb
+	mixin crumb(url,link)
+		li
+			a(href=url)=link
+
+ul(class="uk-breadcrumb")
+	block crumbs
+		+crumb("/","Home")
