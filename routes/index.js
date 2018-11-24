@@ -80,7 +80,7 @@ router.post('/addevent', function(req, res) {
 	  if (err) throw err;
 	  console.log('Event created!');
 	});
-	res.redirect('events');
+	res.redirect('calendar');
 });
 
 
