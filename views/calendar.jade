@@ -39,14 +39,11 @@ block header
           })
           var calEvents = calendar.getEvents();
 
-          console.log(filterArray); 
           for (var i in calEvents)
             calEvents[i].remove();
 
-
           calendar.addEventSource(JSON.parse("!{JSON.stringify(events).replace(/([\\'"])/g, '\\$1')}"));
       
-
           calEvents = calendar.getEvents();
 
           for (var i in calEvents) {
