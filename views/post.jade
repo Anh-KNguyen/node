@@ -1,22 +1,38 @@
-h2.page-header Add Event
-form(method='post', action='/addevent')
+extends ./layout.jade
+
+style(type='text/css').
+ #formcontent label {padding-right:20px}
+
+
+block content
+ h2.page-header Add Event
+
+ #formcontent
+ form(method='post', action='/addevent')
   .form-group
-    label Category
-    select(name='eventid')
-      option(value='1') General
-      option(value='2') Computer Science
-      option(value='3') Other
+   label Category
+   select(name='eventid')
+    option(value='1') General
+    option(value='2') Computer Science
+    option(value='3') Other
   .form-group
-    label Event Title
-    input.form-control(type='text', name='eventtitle', placeholder='Event Title')
+   label Event Title
+   input.form-control(type='text', name='eventtitle', placeholder='Event Title')
   .form-group
-    label Event Start
-    input.form-control(type='date', name='eventstart')
+   label Event Start
+   input.form-control(type='date', name='eventstart')
   .form-group
-    label Event End
-    input.form-control(type='date', name='eventend')
+   label Event End
+   input.form-control(type='date', name='eventend')
   .form-group
-    label Event Description
-    input.form-control(type='text', name='eventdescription', placeholder='Description')
+   label Event Description
+   input.form-control(type='text', name='eventdescription', placeholder='Description')
   button.btn.btn-default(type='submit') Submit
 
+
+ input(type='checkbox', name='gender', value='male')
+ |   Male
+ input(type='checkbox', name='gender', value='female')
+ |   Female
+ input(type='checkbox', name='gender', value='other')
+ |   Other
