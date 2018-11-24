@@ -8,6 +8,7 @@ block header
     script(src='https://unpkg.com/popper.js/dist/umd/popper.min.js')
     script(src='https://unpkg.com/tooltip.js/dist/umd/tooltip.min.js')
     script.
+            
       document.addEventListener('DOMContentLoaded', function() {
       var calendarEl = document.getElementById('calendar');
       var calendar = new FullCalendar.Calendar(calendarEl, {
@@ -25,9 +26,37 @@ block header
       events: JSON.parse("!{JSON.stringify(events).replace(/([\\'"])/g, '\\$1')}")
       });
       calendar.render();
-      });
-   
 
+      $(document).ready(function(){
+        $("p").click(function(){
+          $(this).hide();
+        });
+        $("#filters :checkbox").change( function() {
+          var filterArray = [] 
+          $("#filters :checkbox").each(function() {
+             if (this.checked)
+               filterArray.push(this.value);
+          })
+          var calEvents = calendar.getEvents();
+
+          console.log(filterArray); 
+          for (var i in calEvents)
+            calEvents[i].remove();
+
+
+          calendar.addEventSource(JSON.parse("!{JSON.stringify(events).replace(/([\\'"])/g, '\\$1')}"));
+      
+
+          calEvents = calendar.getEvents();
+
+          for (var i in calEvents) {
+            if (!filterArray.includes(calEvents[i].id))
+              calEvents[i].remove();
+          }
+        })
+      })
+      });
+ 
     style.
       .popper,
       .tooltip {
@@ -131,7 +160,19 @@ block header
      div.uk-flex-center
       h1= title
       #calendar
+      br
+      |   Event filter
+      br
+      #filters
+        input(type='checkbox', id='General', value='1', checked='true')
+        |   General
+        input(type='checkbox', id='Computer Science', value ='2', checked='true')
+        |   Computer Science
+        input(type='checkbox', id='Other', value='3', checked='true')
+        |   Other
+      br
       ul
         for event in events
           li= event.id + ' ' + event.title + ': ' + event.start + ' - ' + event.end
+
 
