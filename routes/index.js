@@ -25,7 +25,8 @@ router.get('/calendar', function(req, res) {
 	  start: doc.eventStart,
 	  end: doc.eventEnd,
 	  description: doc.description,
-      id: doc.id
+      id: doc.id,
+      color: doc.color
 	}));
     res.render('calendar', { events: docs });
   });
@@ -39,8 +40,7 @@ router.get('/angular', function(req, res) {
 /* GET jQuery page. */
 router.get('/jquery', function(req, res) {
     res.render('jquery', { title: 'jquery' });
-});
-
+}); 
 /* GET Events page. */
 router.get('/events', function(req, res) {
   Event.find((err, docs) => {
@@ -51,11 +51,7 @@ router.get('/events', function(req, res) {
 /* GET Post Event page. */
 router.get('/post', function(req, res) {
     res.render('post', { title: 'Post Event' });
-});
-
-var Event = require('../models/event');
-
-/* POST to Add Event Service */
+}); var Event = require('../models/event'); /* POST to Add Event Service */
 router.post('/addevent', function(req, res) {
 
     // Get our form values. These rely on the "name" attributes
@@ -65,6 +61,7 @@ router.post('/addevent', function(req, res) {
 	var eventEnd = req.body.eventend;
     var eventURL = req.body.eventurl;
     var eventDescription = req.body.eventdescription;
+    var eventColor = ['red', 'blue', 'green', 'yellow'][eventId-1];
 
     // Submit to the DB
     var newEvent = new Event({
@@ -73,7 +70,8 @@ router.post('/addevent', function(req, res) {
 	   url : eventURL,
        id : eventId,
 	   eventStart : eventStart,
-	   eventEnd : eventEnd
+	   eventEnd : eventEnd,
+       color : eventColor
     });
 //	newEvent.save(function(err) {
     Event.createEvent(newEvent, function (err, event) {
