@@ -25,6 +25,7 @@ router.get('/calendar', function(req, res) {
 	  start: doc.eventStart,
 	  end: doc.eventEnd,
 	  description: doc.description,
+      id: doc.id
 	}));
     res.render('calendar', { events: docs });
   });
@@ -59,6 +60,7 @@ router.post('/addevent', function(req, res) {
 
     // Get our form values. These rely on the "name" attributes
     var eventTitle = req.body.eventtitle;
+    var eventId = req.body.eventid;
     var eventStart = req.body.eventstart;
 	var eventEnd = req.body.eventend;
     var eventURL = req.body.eventurl;
@@ -69,6 +71,7 @@ router.post('/addevent', function(req, res) {
 	   title : eventTitle,
 	   description : eventDescription,
 	   url : eventURL,
+       id : eventId,
 	   eventStart : eventStart,
 	   eventEnd : eventEnd
     });
