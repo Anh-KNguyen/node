@@ -13,8 +13,9 @@ function calendarPage(req, res, next) {
 	  start: doc.eventStart,
 	  end: doc.eventEnd,
 	  description: doc.description,
-          id: doc.id,
-          color: doc.color
+    id: doc.id,
+    color: doc.color,
+    url: doc.url
 	}));
     res.render('calendar', { events: docs });
   });
@@ -49,7 +50,9 @@ router.get('/events', function(req, res) {
 /* GET Post Event page. */
 router.get('/post', function(req, res) {
     res.render('post', { title: 'Post Event' });
-}); var Event = require('../models/event'); /* POST to Add Event Service */
+}); 
+
+/* POST to Add Event Service */
 router.post('/addevent', function(req, res) {
 
     // Get our form values. These rely on the "name" attributes
@@ -57,7 +60,7 @@ router.post('/addevent', function(req, res) {
     var eventId = req.body.eventid;
     var eventStart = req.body.eventstart;
     var eventEnd = req.body.eventend;
-    var eventURL = req.body.eventurl;
+    var eventURL = req.body.eventURL;
     var eventDescription = req.body.eventdescription;
     var eventColor = ['green','#005577', '#770000'][eventId-1];
 
@@ -66,10 +69,10 @@ router.post('/addevent', function(req, res) {
 	   title : eventTitle,
 	   description : eventDescription,
 	   url : eventURL,
-           id : eventId,
+     id : eventId,
 	   eventStart : eventStart,
 	   eventEnd : eventEnd,
-           color : eventColor
+     color : eventColor
     });
 //	newEvent.save(function(err) {
     Event.createEvent(newEvent, function (err, event) {
