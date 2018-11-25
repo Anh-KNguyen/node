@@ -25,6 +25,8 @@ block header
       },
       events: JSON.parse("!{JSON.stringify(events).replace(/([\\'"])/g, '\\$1')}")
       });
+
+      var calEvents = calendar.getEvents();
       calendar.render();
 
       $(document).ready(function(){
@@ -37,19 +39,12 @@ block header
              if (this.checked)
                filterArray.push(this.value);
           })
-          var calEvents = calendar.getEvents();
 
           for (var i in calEvents)
-            calEvents[i].remove();
-
-          calendar.addEventSource(JSON.parse("!{JSON.stringify(events).replace(/([\\'"])/g, '\\$1')}"));
-      
-          calEvents = calendar.getEvents();
-
-          for (var i in calEvents) {
-            if (!filterArray.includes(calEvents[i].id))
+            if (filterArray.includes(calEvents[i].id))
+              calendar.addEvent(calEvents[i]);
+            else
               calEvents[i].remove();
-          }
         })
       })
       });
