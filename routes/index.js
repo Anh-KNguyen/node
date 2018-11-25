@@ -25,8 +25,8 @@ router.get('/calendar', function(req, res) {
 	  start: doc.eventStart,
 	  end: doc.eventEnd,
 	  description: doc.description,
-      id: doc.id,
-      color: doc.color
+          id: doc.id,
+          color: doc.color
 	}));
     res.render('calendar', { events: docs });
   });
@@ -58,7 +58,7 @@ router.post('/addevent', function(req, res) {
     var eventTitle = req.body.eventtitle;
     var eventId = req.body.eventid;
     var eventStart = req.body.eventstart;
-	var eventEnd = req.body.eventend;
+    var eventEnd = req.body.eventend;
     var eventURL = req.body.eventurl;
     var eventDescription = req.body.eventdescription;
     var eventColor = ['red', 'blue', 'green', 'yellow'][eventId-1];
@@ -68,10 +68,10 @@ router.post('/addevent', function(req, res) {
 	   title : eventTitle,
 	   description : eventDescription,
 	   url : eventURL,
-       id : eventId,
+           id : eventId,
 	   eventStart : eventStart,
 	   eventEnd : eventEnd,
-       color : eventColor
+           color : eventColor
     });
 //	newEvent.save(function(err) {
     Event.createEvent(newEvent, function (err, event) {

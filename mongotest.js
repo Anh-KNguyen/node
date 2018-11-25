@@ -10,6 +10,7 @@ var dateFormat = require('dateformat');
 var links = ['https://calendar.cpp.edu/MasterCalendar/RSSFeeds.aspx?data=6UXt45wBkTcFIBid%2b4Gb2e2%2bDkhVSdjk'];
 
 var allRssItems = [];
+var channelItems = [];
 
 mongoose.connect('mongodb://localhost:27017/node',{ useNewUrlParser: true });
 
@@ -18,6 +19,7 @@ var eventStart = "";
 var eventEnd = "";
 var eventURL = "";
 var eventDescription = "";
+var eventId = "1";
 
 var now = new Date();
 
@@ -41,7 +43,8 @@ var now = new Date();
                     description : eventDescription,
                     url : eventURL,
                     eventStart : eventStart,
-                    eventEnd : eventEnd
+                    eventEnd : eventEnd,
+                    id : eventId
 
                 });
 
