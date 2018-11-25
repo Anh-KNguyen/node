@@ -13,7 +13,7 @@ block header
       var calendarEl = document.getElementById('calendar');
       var calendar = new FullCalendar.Calendar(calendarEl, {
       defaultDate: moment().format('YYYY-MM-DD'),
-      editable: true,
+      editable: false,
       eventLimit: true, // allow "more" link when too many events
       eventRender: function(info) {
         var tooltip = new Tooltip(info.el, {
