@@ -64,7 +64,7 @@ router.post('/addevent', function(req, res) {
     var eventDescription = req.body.eventdescription;
     var eventColor = ['green','#005577', '#bb0000'][eventId-1];
 
-    if (eventURL.substring(0,8) != 'https://' && eventURL.substring(0,7) != 'http://')
+    if (eventURL.length > 0 && eventURL.substring(0,8) != 'https://' && eventURL.substring(0,7) != 'http://')
        eventURL = 'https://' + eventURL;
 
     // Submit to the DB
