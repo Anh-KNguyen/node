@@ -44,8 +44,8 @@ var now = new Date();
                     url : eventURL,
                     eventStart : eventStart,
                     eventEnd : eventEnd,
-                    id : eventId
-
+                    id : eventId,
+                    color : 'green'
                 });
 
                 Event.createEvent(newEvent, function (err, event) {
