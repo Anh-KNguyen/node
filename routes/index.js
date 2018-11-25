@@ -62,7 +62,7 @@ router.post('/addevent', function(req, res) {
     var eventEnd = req.body.eventend;
     var eventURL = req.body.eventURL;
     var eventDescription = req.body.eventdescription;
-    var eventColor = ['green','#005577', '#770000'][eventId-1];
+    var eventColor = ['green','#005577', '#bb0000'][eventId-1];
 
     // Submit to the DB
     var newEvent = new Event({
