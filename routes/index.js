@@ -3,22 +3,10 @@ var router = express.Router();
 var Event = require('../models/event');
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
-});
+router.get('/', calendarPage);
+router.get('/calendar', calendarPage);
 
-/* GET Hello World page. */
-router.get('/helloworld', function(req, res) {
-    res.render('helloworld', { title: 'Hello, World!' });
-});
-
-/* GET Moment page. */
-router.get('/moment', ensureAuthenticated, function(req, res) {
-    res.render('moment', { title: 'Date and Time' });
-});
-
-/* GET FullCalendar page. */
-router.get('/calendar', function(req, res) {
+function calendarPage(req, res, next) {
   Event.find((err, docs) => {
 	docs = docs.map(doc => ({
 	  title: doc.title,
@@ -30,6 +18,16 @@ router.get('/calendar', function(req, res) {
 	}));
     res.render('calendar', { events: docs });
   });
+};
+
+/* GET Hello World page. */
+router.get('/helloworld', function(req, res) {
+    res.render('helloworld', { title: 'Hello, World!' });
+});
+
+/* GET Moment page. */
+router.get('/moment', ensureAuthenticated, function(req, res) {
+    res.render('moment', { title: 'Date and Time' });
 });
 
 /* GET Angular page. */
@@ -61,7 +59,7 @@ router.post('/addevent', function(req, res) {
     var eventEnd = req.body.eventend;
     var eventURL = req.body.eventurl;
     var eventDescription = req.body.eventdescription;
-    var eventColor = ['red', 'blue', 'green', 'yellow'][eventId-1];
+    var eventColor = ['green','#005577', '#770000'][eventId-1];
 
     // Submit to the DB
     var newEvent = new Event({
@@ -78,7 +76,7 @@ router.post('/addevent', function(req, res) {
 	  if (err) throw err;
 	  console.log('Event created!');
 	});
-	res.redirect('calendar');
+	res.redirect('/');
 });
 
 
