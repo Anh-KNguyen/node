@@ -1,20 +1,22 @@
-html
-include ./header.jade
-h2.page-header Register
-form(method='post', action='/users/register')
-  .form-group
-    label Name
+extends ./layout.jade
+block breadcrumbs
+ 
+block content
+ h2.page-header Register
+ form(method='post', action='/users/register')
+  .form-group.uk-padding-small
+    label.uk-padding-small Name
     input.form-control(type='text', placeholder='Name', name='name')
-  .form-group
-    label Username
+  .form-group.uk-padding-small
+    label.uk-padding-small Username
     input.form-control(type='text', placeholder='Username', name='username')
-  .form-group
-    label Email
+  .form-group.uk-padding-small
+    label.uk-padding-small Email
     input.form-control(type='email', placeholder='Email', name='email')
-  .form-group
-    label Password
+  .form-group.uk-padding-small
+    label.uk-padding-small Password
     input.form-control(type='password', placeholder='Password', name='password')
-  .form-group
-    label Confirm Password
+  .form-group.uk-padding-small
+    label.uk-padding-small Confirm Password
     input.form-control(type='password', placeholder='Password', name='password2')
   button.btn.btn-default(type='submit') Submit

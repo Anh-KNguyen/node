@@ -1,4 +1,5 @@
 extends ./layout.jade
+<<<<<<< HEAD
 
 style(type='text/css').
  #formcontent label {padding-right:20px}
@@ -27,4 +28,29 @@ block content
   .form-group
    label Event Description
    input.form-control(type='text', name='eventdescription', placeholder='Description')
+=======
+block breadcrumbs
+ 
+block content
+ h2.page-header Post Event
+ form(method='post', action='/addevent')
+  .form-group.uk-padding-small
+    label.uk-padding-small Category
+    select(name='eventid')
+      option(value='1') General
+      option(value='2') Computer Science
+      option(value='3') Other
+  .form-group.uk-padding-small
+    label.uk-padding-small Event Title
+    input.form-control(type='text', name='eventtitle', placeholder='Event Title')
+  .form-group.uk-padding-small
+    label.uk-padding-small Event Start
+    input.form-control(type='date', name='eventstart')
+  .form-group.uk-padding-small
+    label.uk-padding-small Event End
+    input.form-control(type='date', name='eventend')
+  .form-group.uk-padding-small
+    label.uk-padding-small Event Description
+    input.form-control(type='text', name='eventdescription', placeholder='Description')
+>>>>>>> new changes to frontend:wq
   button.btn.btn-default(type='submit') Submit

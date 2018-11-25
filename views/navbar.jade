@@ -2,14 +2,14 @@ nav(class='uk-navbar-container')
 	div(class="uk-navbar-left" uk-navbar="mode: click")
 		ul(class='uk-navbar-nav')
 			li(class='uk-parent')
-				a(href='/') home
+				a(href='/calendar') home
 			li(class='uk-parent')
-				a(href='/angular') angular
-				li(class='uk-parent')
-					a(href='#') events  
-					div(class="uk-navbar-dropdown")
-						ul(class="uk-nav uk-navbar-dropdown-nav")
-							li
-								a(href="/Calendar") Calendar
-							li
-								a(href="/events") All Events 
+				a(href='/post') post events  
+			li(class='uk-parent')
+				a(href='#') account login / register
+				div(class="uk-navbar-dropdown")
+					ul(class="uk-nav uk-navbar-dropdown-nav")
+						li
+							a(href="/users/login") Account Login
+						li
+							a(href="/users/register") Register
