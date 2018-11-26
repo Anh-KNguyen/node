@@ -7,7 +7,11 @@ var Parser = require('rss-parser');
 var parser = new Parser();
 var dateFormat = require('dateformat');
 
-var links = ['https://calendar.cpp.edu/MasterCalendar/RSSFeeds.aspx?data=6UXt45wBkTcFIBid%2b4Gb2e2%2bDkhVSdjk'];
+//var links = ['https://calendar.cpp.edu/MasterCalendar/RSSFeeds.aspx?data=exfsp9BbGwOa3zSOgl8KgGNgCYC75ztqqkFP6cJRnpY%3d']; //Ursa Minor
+//var links = ['https://calendar.cpp.edu/MasterCalendar/RSSFeeds.aspx?data=6UXt45wBkTcFIBid%2b4Gb2e2%2bDkhVSdjk']; //Orion
+//var links = ['https://calendar.cpp.edu/MasterCalendar/RSSFeeds.aspx?data=OiNeXA6LJItp%2bLkkMsbi4050X4kD6epuP4vCurdqfSD0uyOJgBAweQ%3d%3d']; //CPP events
+//var links = ['https://calendar.cpp.edu/MasterCalendar/RSSFeeds.aspx?data=E6dodmaNJ5NKdXCNLg2VPn652OiRBsgF88G3P4FwrJ8%3d']; //Centaurus
+var links = ['https://calendar.cpp.edu/MasterCalendar/RSSFeeds.aspx?data=VXLCORHhDCF9BYlLwAXiIJvPWWGYQMdCK0%2bRug%2fT9ac%3d']; //Ursa Major
 
 var allRssItems = [];
 var channelItems = [];
