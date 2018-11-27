@@ -48,7 +48,10 @@ router.get('/events', function(req, res) {
 });
 
 /* GET Post Event page. */
-router.get('/post', function(req, res) {
+router.get('/post', ensureAuthenticated, function(req, res) {
+    res.render('post', { title: 'Post Event' });
+}); 
+router.get('/postPANIC', function(req, res) {
     res.render('post', { title: 'Post Event' });
 }); 
 
