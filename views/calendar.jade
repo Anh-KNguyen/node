@@ -23,7 +23,7 @@ block header
           container: 'body'
         })
       },
-      events: JSON.parse("!{JSON.stringify(events).replace(/([\\'"])/g, '\\$1')}")
+      events: JSON.parse("!{JSON.stringify(events).replace(/([\\'\"])/g, '\\$1')}")
       });
 
       var calEvents = calendar.getEvents();
@@ -153,7 +153,7 @@ block header
       h1= title
       #calendar
       br
-      |   Event filter
+      h5 Event filter
       br
       #filters
         input(type='checkbox', id='General', value='1', checked='true')
@@ -163,8 +163,3 @@ block header
         input(type='checkbox', id='Other', value='3', checked='true')
         |   Other
       br
-      ul
-        for event in events
-          li= event.id + ' ' + event.title + ': ' + event.start + ' - ' + event.end
-
-
