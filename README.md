@@ -8,6 +8,7 @@ Running locally
 mongod --dbpath data
 
 //only need to be called once
+
 npm install
 
 npm start
